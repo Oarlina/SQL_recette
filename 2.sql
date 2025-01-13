@@ -1,10 +1,7 @@
-SELECT nom, nom_categorie, temps_de_preparation /* on dit que l'on veux ces informations*/
-FROM recette/* on prend de la table recette*/
+SELECT recette.nom, nom_categorie, temps_de_preparation, COUNT(id_ingredient)
+FROM recette
+INNER JOIN type_recette ON recette.id_type_recette= type_recette.id_type_recette
+INNER JOIN ingredient_recette ON recette.id_recette = ingredient_recette.id_recette
 
-INNER JOIN type_recette ON recette.id_type_recette= type_recette.id_type_recette/* on fait la jointure entre les 2 tables sur le champ commun des 2 tables*/
-ORDER BY temps_de_preparation DESC/* on ordonne dans l'ordre decroissant par le temps de preparation*/
-
-
-
-
-
+GROUP BY recette.nom, nom_categorie, temps_de_preparation
+ORDER BY temps_de_preparation DESC

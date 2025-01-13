@@ -1,4 +1,5 @@
-SELECT * FROM ingredient_recette
+SELECT r.id_recette, r.nom FROM recette r
 
-INNER JOIN ingredient ON ingredient_recette.id_ingredient = ingredient.prix
-WHERE prix<2
+LEFT JOIN ingredient_recette ir ON r.id_recette = ir.id_recette
+WHERE ir.id_ingredient IS NULL 
+ 
